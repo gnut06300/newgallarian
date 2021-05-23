@@ -1,0 +1,21 @@
+h1{
+	color: #46AB0F;
+	text-align: center;
+}
+.card .card-content .card-header{
+	padding: 0 0 0.5rem 0;
+}
+footer{
+	text-align: center;
+}
+.divider{
+	width: 100px;
+	height: 2px;
+	background-color: #46AB0F;
+	margin: auto;
+}
+.card{
+	width: 280px;
+	min-height: 220px;
+
+}

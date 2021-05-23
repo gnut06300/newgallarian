@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+
+{% block body %}
+
+    <h2>Modification catégorie</h2>
+    {{ form_start(updateForm)}}
+    {{ form_row(updateForm.name)}}
+    {{ form_row(updateForm.content)}}
+    {{ form_row(updateForm.isActived)}}
+    {#{ form_row(updateForm.Valider)}#}
+    {{ form_end(updateForm)}}
+
+{% endblock %}
