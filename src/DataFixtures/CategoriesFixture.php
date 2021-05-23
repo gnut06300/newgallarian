@@ -24,6 +24,7 @@ class CategoriesFixture extends Fixture
             $categories->setContent("ma brouette $i");
             $categories->setSlug($this->sluger->slug($categories->getName())->lower());
             $manager->persist($categories);
+            $this->addReference("category-$i", $categories);
         }
         $manager->flush();
     }
