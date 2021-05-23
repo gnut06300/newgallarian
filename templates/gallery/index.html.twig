@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Title</th>
                 <th>Description</th>
+                <th>Categorie</th>
                 <th>CreatedAt</th>
                 <th>UpdatedAt</th>
                 <th>PublishAt</th>
@@ -23,6 +24,7 @@
                 <td>{{ gallery.id }}</td>
                 <td>{{ gallery.title }}</td>
                 <td>{{ gallery.description }}</td>
+                <td>{{ gallery.category.name }}</td>
                 <td>{{ gallery.createdAt ? gallery.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ gallery.updatedAt ? gallery.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ gallery.publishAt ? gallery.publishAt|date('Y-m-d H:i:s') : '' }}</td>

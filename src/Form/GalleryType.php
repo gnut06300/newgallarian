@@ -3,11 +3,13 @@
 namespace App\Form;
 
 use App\Entity\Gallery;
+use App\Entity\Category;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class GalleryType extends AbstractType
 {
@@ -16,6 +18,10 @@ class GalleryType extends AbstractType
         $builder
             ->add('title',TextType::class)
             ->add('description', TextareaType::class) 
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name',
+             ])
             
         ;
     }
@@ -24,6 +30,9 @@ class GalleryType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Gallery::class,
+            'attr' => [
+                'novalidate' => true
+            ]
             //'attr' => ['novalidate'=> true] //Enlève la validation HTML pour tout les champs à ajouter en dev 
         ]);
     }
