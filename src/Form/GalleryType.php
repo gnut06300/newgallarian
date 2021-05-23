@@ -30,9 +30,6 @@ class GalleryType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Gallery::class,
-            'attr' => [
-                'novalidate' => true
-            ]
             //'attr' => ['novalidate'=> true] //Enlève la validation HTML pour tout les champs à ajouter en dev 
         ]);
     }
