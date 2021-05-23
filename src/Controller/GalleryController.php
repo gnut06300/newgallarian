@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Gallery;
 use App\Form\GalleryType;
+use App\Form\PictureType;
 use App\Repository\GalleryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,12 +52,24 @@ class GalleryController extends AbstractController
     /**
      * requirements={"slug"="\d+"}
      * priority=-10 le mettre dans la route
-     * @Route("/{slug}", name="gallery_show", methods={"GET"}, priority=-10)
+     * @Route("/{slug}", name="gallery_show", methods={"GET", "POST"}, priority=-10)
     */
-    public function show(Gallery $gallery): Response
+    public function show(Gallery $gallery, Request $request): Response
     {
+        $form = $this->createForm(PictureType::class);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $file = $request->files->get('picture')['image']; //UpladedFile (le fichier uploadé)
+            //dump($request->files->get('picture')['image']);die;
+
+        }
+
         return $this->render('gallery/show.html.twig', [
             'gallery' => $gallery,
+            'form' => $form->createView()
         ]);
     }
 
@@ -83,7 +96,7 @@ class GalleryController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="gallery_delete", methods={"POST"})
+     * @Route("/{id}", name="gallery_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Gallery $gallery): Response
     {

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PictureRepository;
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
+use symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PictureRepository::class)
@@ -31,7 +32,7 @@ class Picture
     /**
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $updateAt;
+    private $updatedAt;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -39,7 +40,8 @@ class Picture
     private $slug;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=55, nullable=true)
+     * @Assert\Length(min=5, max=55, minMessage="Il faut minimum {{ limit }} caractéres", maxMessage="Il faut maximum {{ limit }} caractéres")
      */
     private $title;
 
@@ -76,14 +78,14 @@ class Picture
         return $this;
     }
 
-    public function getUpdateAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->updateAt;
+        return $this->updatedAt;
     }
 
-    public function setUpdateAt(?\DateTimeInterface $updateAt): self
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
     {
-        $this->updateAt = $updateAt;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
